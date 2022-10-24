@@ -1,9 +1,11 @@
 import './App.css';
+import UilReact from '@iconscout/react-unicons/icons/uil-react';
 
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to Weather App</h1>
+      <h1 className="text-2xl font-bold text-red-500">Welcome to Weather App</h1>
+      <UilReact size={50} />
     </div>
   );
 }
