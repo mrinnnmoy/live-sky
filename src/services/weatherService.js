@@ -42,10 +42,9 @@ const formatCurrentWeather = (data) => {
     country,
     sunrise,
     sunset,
-    weather,
-    speed,
     details,
     icon,
+    speed,
   };
 };
 
