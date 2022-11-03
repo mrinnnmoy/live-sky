@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   // To store data after being fetched.
-  const [query, setQuery] = useState({ q: "Berlin" });
+  const [query, setQuery] = useState({ q: "Kolkata" });
   const [units, setUnits] = useState("metric");
   const [weather, setWeather] = useState(null);
 
@@ -38,7 +38,7 @@ function App() {
 
       {weather && (
         <div>
-          <TimeAndLocation />
+          <TimeAndLocation weather={weather} />
           <TemperatureAndDetails />
           <Forecast title="Hourly Forecast" />
           <Forecast title="Daily Forecast" />
