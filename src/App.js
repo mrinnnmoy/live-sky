@@ -6,6 +6,8 @@ import TemperatureAndDetails from "./Components/TemperatureAndDetails";
 import Forecast from "./Components/Forecast";
 import getFormattedWeatherData from "./services/weatherService";
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   // To store data after being fetched.
@@ -22,7 +24,17 @@ function App() {
 
     // To accept Location from frontend
     const fetchWeather = async () => {
+
+      // To display toastify-message
+      const message = query.q ? query.q : "current location.";
+
+      toast.info("Fetching weather for " + message);
+
       await getFormattedWeatherData({ ...query, units }).then((data) => {
+      toast.success(
+        `Successfully fetched weather for ${data.name}, ${data.country}.`
+      );
+      
         setWeather(data);
       });
     };
@@ -41,7 +53,9 @@ function App() {
   };
 
   return (
-    <div className={`mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}>
+    <div
+      className={`mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}
+    >
       <TopButtons setQuery={setQuery} />
       <Inputs setQuery={setQuery} units={units} setUnits={setUnits} />
 
@@ -54,6 +68,8 @@ function App() {
           <Forecast title="Daily Forecast" items={weather.daily} />
         </div>
       )}
+
+      <ToastContainer autoClose={2000} theme="colored" newestOnTop={true} />
     </div>
   );
 }
